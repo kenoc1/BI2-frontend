@@ -1,3 +1,7 @@
 # djackets_vue
 
-This repository is a part of a YouTube tutorial.
+#Run
+## Development:
+npm run serve
+## Production:
+npm run serve -- --mode=production
