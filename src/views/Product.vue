@@ -1,20 +1,26 @@
 <template>
     <div class="page-product">
         <div class="columns is-multiline">
-            <div class="column is-9">
+            <div class="column is-7">
                 <figure class="image mb-6">
                     <img v-bind:src="product.get_image">
                 </figure>
+            </div>
+
+            <div class="column is-5">
 
                 <h1 class="title">{{ product.name }}</h1>
 
+                <p><strong>Bewertung: </strong></p>
+
+                <p><strong>Beschreibung: </strong></p>
+
                 <p>{{ product.description }}</p>
-            </div>
 
-            <div class="column is-3">
-                <h2 class="subtitle">Information</h2>
+                <h2 class="subtitle">Details:</h2>
 
-                <p><strong>Price: </strong>${{ product.price }}</p>
+                <p><strong>Preis: </strong>{{ product.price }}€</p>
+                <p><strong>Angebotsrabatt: </strong></p>
 
                 <div class="field has-addons mt-6">
                     <div class="control">
@@ -22,9 +28,12 @@
                     </div>
 
                     <div class="control">
-                        <a class="button is-dark" @click="addToCart()">Add to cart</a>
+                        <a class="button is-dark" @click="addToCart()">Hinzufügen</a>
                     </div>
                 </div>
+
+              <p>SKU: </p>
+
             </div>
         </div>
     </div>
@@ -57,7 +66,7 @@ export default {
                 .then(response => {
                     this.product = response.data
 
-                    document.title = this.product.name + ' | Djackets'
+                    document.title = this.product.name + ' | IBSUPERMARKT'
                 })
                 .catch(error => {
                     console.log(error)
