@@ -3,17 +3,17 @@
     <section class="hero is-medium is-dark mb-6">
         <div class="hero-body has-text-centered">
             <p class="title mb-6">
-                Herzlich Willkommen bei IBSUPERMARKT!
+                Welcome to IBSUPERMARKT!
             </p>
             <p class="subtitle">
-                Der einzig wahre Online-Supermarkt
+                The best store online
             </p>
         </div>
     </section>
 
     <div class="columns is-multiline">
       <div class="column is-12">
-          <h2 class="is-size-2 has-text-centered">Aktuell beliebte Produkte</h2>
+          <h2 class="is-size-2 has-text-centered">Latest products</h2>
       </div>
 
       <ProductBox 

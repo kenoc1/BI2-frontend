@@ -11,16 +11,11 @@
 
                 <h1 class="title">{{ product.name }}</h1>
 
-                <p><strong>Bewertung: </strong></p>
+                <p v-if="product.evaluation!=null"><strong>Evaluation:  </strong>{{ product.evaluation }}</p>
+                <p v-else><strong>Evaluation: Nothing to show </strong></p>
 
-                <p><strong>Beschreibung: </strong></p>
-
-                <p>{{ product.description }}</p>
-
-                <h2 class="subtitle">Details:</h2>
-
-                <p><strong>Preis: </strong>{{ product.price }}€</p>
-                <p><strong>Angebotsrabatt: </strong></p>
+                <p><strong>Price: </strong>{{ product.price }}€</p>
+                <p v-if="product.discount!=0 && product.discount!=null"><strong>Discount: {{product.discount}}</strong></p>
 
                 <div class="field has-addons mt-6">
                     <div class="control">
@@ -28,11 +23,20 @@
                     </div>
 
                     <div class="control">
-                        <a class="button is-dark" @click="addToCart()">Hinzufügen</a>
+                        <a class="button is-dark" @click="addToCart()">Add</a>
                     </div>
                 </div>
 
-              <p>SKU: </p>
+              <h2 class="subtitle"><strong>Details:</strong></h2>
+              <p v-if="product.description!=null">{{ product.description }}</p>
+
+              <p style="padding-top:20px;"><strong>SKU: </strong>{{ product.sku }}</p>
+
+              <p v-if="product.recycle=1"><strong>recycle: </strong>yes</p>
+              <p v-if="product.recycle=0"><strong>recycle: </strong>no</p>
+
+              <p  v-if="product.lowfat=1"><strong>low-fat: </strong>yes</p>
+              <p  v-if="product.lowfat=0"><strong>low-fat: </strong>no</p>
 
             </div>
         </div>
@@ -62,9 +66,13 @@ export default {
             const product_slug = this.$route.params.product_slug
 
             await axios
-                .get(`/api/v1/products/${category_slug}/${product_slug}`)
+                //.get(`/api/v1/products/${category_slug}/${product_slug}`, 1)
+                .get('/api/v1/one/')
                 .then(response => {
-                    this.product = response.data
+
+                    this.product = response.data;
+
+
 
                     document.title = this.product.name + ' | IBSUPERMARKT'
                 })
@@ -98,3 +106,26 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+
+.seperator h5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1em;
+}
+
+.seperator h5::before,
+.seperator h5::after {
+  content: "";
+  display: block;
+  flex-grow: 1;
+  height: 1px;
+  background: #ccc;
+}
+
+.seperator h5 span {
+  padding: 0 2em;
+}
+</style>

@@ -33,14 +33,14 @@
         </div>
 
         <div class="navbar-end">
-          <router-link to="/food" class="navbar-item">food</router-link>
-          <router-link to="/drink" class="navbar-item">drink</router-link>
-          <router-link to="/non-consumable" class="navbar-item">non-consumable</router-link>
+          <router-link to="/food" class="navbar-item">Food</router-link>
+          <router-link to="/drink" class="navbar-item">Drink</router-link>
+          <router-link to="/non-consumable" class="navbar-item">Non-consumable</router-link>
 
           <div class="navbar-item">
             <div class="buttons">
               <template v-if="$store.state.isAuthenticated">
-                <router-link to="/my-account" class="button is-light">Mein account</router-link>
+                <router-link to="/my-account" class="button is-light">My account</router-link>
               </template>
 
               <template v-else>
