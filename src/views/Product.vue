@@ -12,7 +12,7 @@
                 <h1 class="title">{{ product.name }}</h1>
 
                 <p v-if="product.evaluation!=null"><strong>Evaluation:  </strong>{{ product.evaluation }}</p>
-                <p v-else><strong>Evaluation: Nothing to show </strong></p>
+                <p v-else><strong>Evaluation: </strong>Nothing to show </p>
 
                 <p><strong>Price: </strong>{{ product.price }}€</p>
                 <p v-if="product.discount!=0 && product.discount!=null"><strong>Discount: {{product.discount}}</strong></p>
@@ -66,8 +66,8 @@ export default {
             const product_slug = this.$route.params.product_slug
 
             await axios
-                //.get(`/api/v1/products/${category_slug}/${product_slug}`, 1)
-                .get('/api/v1/one/')
+                .get(`/api/v1/${category_slug}/${product_slug}`)
+                //.get('/api/v1/one/')
                 .then(response => {
 
                     this.product = response.data;
