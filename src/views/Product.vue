@@ -14,7 +14,7 @@
                 <p v-if="product.evaluation!=null"><strong>Evaluation:  </strong>{{ product.evaluation }}</p>
                 <p v-else><strong>Evaluation: </strong>Nothing to show </p>
 
-                <p><strong>Price: </strong>{{ product.price }}€</p>
+                <p><strong>Price: </strong>{{ product.get_price }}€</p>
                 <p v-if="product.discount!=0 && product.discount!=null"><strong>Discount: {{product.discount}}</strong></p>
 
                 <div class="field has-addons mt-6">
@@ -56,7 +56,7 @@ export default {
         }
     },
     mounted() {
-        this.getProduct() 
+        this.getProduct()
     },
     methods: {
         async getProduct() {
@@ -73,13 +73,12 @@ export default {
                     this.product = response.data;
 
 
-
                     document.title = this.product.name + ' | IBSUPERMARKT'
                 })
                 .catch(error => {
                     console.log(error)
                 })
-            
+
             this.$store.commit('setIsLoading', false)
         },
         addToCart() {
