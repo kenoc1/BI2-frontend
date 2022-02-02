@@ -2,10 +2,10 @@
     <div class="page-category">
         <div class="columns is-multiline">
             <div class="column is-12">
-                <h2 class="is-size-2 has-text-centered">Category</h2>
+                <h2 class="is-size-2 has-text-centered">{{product.description}}</h2>
             </div>
 
-            <ProductBox 
+            <ProductBox
                 v-for="product in category"
                 v-bind:key="product.id"
                 v-bind:product="product" />
@@ -26,7 +26,8 @@ export default {
     },
     data() {
         return {
-            category: []
+            category: [],
+            product:[]
         }
     },
     mounted() {
@@ -49,8 +50,8 @@ export default {
                 .get(`/api/v1/products/${categorySlug}/`)
                 //.get(`/api/v1/products/test/`)
                 .then(response => {
-                    this.category = response.data
-
+                    this.product = response.data['arr2']
+                    this.category = response.data['arr1']
                     //document.title = this.family.name + ' | IBSUPERMARKT'
                     document.title =  ' Family | IBSUPERMARKT'
                 })
