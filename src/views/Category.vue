@@ -2,11 +2,11 @@
     <div class="page-category">
         <div class="columns is-multiline">
             <div class="column is-12">
-                <h2 class="is-size-2 has-text-centered">Category</h2>
+                <h2 class="is-size-2 has-text-centered">{{category.family_data.description}}</h2>
             </div>
 
             <ProductBox 
-                v-for="product in category"
+                v-for="product in category.products"
                 v-bind:key="product.id"
                 v-bind:product="product" />
         </div>
@@ -26,7 +26,10 @@ export default {
     },
     data() {
         return {
-            category: []
+            category: {
+              products: [],
+              family_data: []
+            }
         }
     },
     mounted() {
@@ -47,12 +50,10 @@ export default {
 
             axios
                 .get(`/api/v1/products/${categorySlug}/`)
-                //.get(`/api/v1/products/test/`)
                 .then(response => {
                     this.category = response.data
 
-                    //document.title = this.family.name + ' | IBSUPERMARKT'
-                    document.title =  ' Family | IBSUPERMARKT'
+                    document.title = this.category.family_data.description + ' | IBSUPERMARKT'
                 })
                 .catch(error => {
                     console.log(error)

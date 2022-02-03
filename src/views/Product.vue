@@ -1,20 +1,20 @@
 <template>
     <div class="page-product">
         <div class="columns is-multiline">
-            <div class="column is-7">
+            <div class="column is-5">
                 <figure class="image mb-6">
                     <img v-bind:src="product.get_image">
                 </figure>
             </div>
 
-            <div class="column is-5">
+            <div class="column is-7">
 
                 <h1 class="title">{{ product.name }}</h1>
 
                 <p v-if="product.evaluation!=null"><strong>Evaluation:  </strong>{{ product.evaluation }}</p>
                 <p v-else><strong>Evaluation: </strong>Nothing to show </p>
 
-                <p><strong>Price: </strong>{{ product.price }}€</p>
+                <p><strong>Price: </strong>{{ product.get_price }}€</p>
                 <p v-if="product.discount!=0 && product.discount!=null"><strong>Discount: {{product.discount}}</strong></p>
 
                 <div class="field has-addons mt-6">
@@ -67,7 +67,6 @@ export default {
 
             await axios
                 .get(`/api/v1/${category_slug}/${product_slug}`)
-                //.get('/api/v1/one/')
                 .then(response => {
 
                     this.product = response.data;
