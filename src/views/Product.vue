@@ -56,7 +56,7 @@ export default {
         }
     },
     mounted() {
-        this.getProduct() 
+        this.getProduct()
     },
     methods: {
         async getProduct() {
@@ -72,13 +72,12 @@ export default {
                     this.product = response.data;
 
 
-
                     document.title = this.product.name + ' | IBSUPERMARKT'
                 })
                 .catch(error => {
                     console.log(error)
                 })
-            
+
             this.$store.commit('setIsLoading', false)
         },
         addToCart() {

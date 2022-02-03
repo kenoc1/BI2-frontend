@@ -6,7 +6,7 @@
             </div>
 
             <ProductBox 
-                v-for="product in category.products"
+                v-for="product in category"
                 v-bind:key="product.id"
                 v-bind:product="product" />
         </div>
