@@ -3,10 +3,10 @@
     <section class="hero is-medium is-dark mb-6">
         <div class="hero-body has-text-centered">
             <p class="title mb-6">
-                Welcome to Djacket
+                Welcome to IBSUPERMARKT!
             </p>
             <p class="subtitle">
-                The best jacket store online
+                The best store online
             </p>
         </div>
     </section>
@@ -42,7 +42,7 @@ export default {
   mounted() {
     this.getLatestProducts()
 
-    document.title = 'Home | Djackets'
+    document.title = 'Home | IBSUPERMARKT'
   },
   methods: {
     async getLatestProducts() {
