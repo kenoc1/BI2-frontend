@@ -22,6 +22,7 @@
         v-bind:product="product" />
     </div>
   </div>
+
 </template>
 
 <script>
