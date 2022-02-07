@@ -165,12 +165,13 @@ export default {
       const elements = this.stripe.elements();
       this.card = elements.create('card', {hidePostalCode: true})
 
+      //TODO: Klären warum das gemounted werden muss
       this.card.mount('#card-element')
     }
   },
   methods: {
     getItemTotal(item) {
-      return item.quantity * item.product.price
+      return item.quantity * item.product.get_price
     },
     submitForm() {
       this.errors = []
@@ -257,7 +258,7 @@ export default {
   computed: {
     cartTotalPrice() {
       return this.cart.items.reduce((acc, curVal) => {
-        return acc += curVal.product.price * curVal.quantity
+        return acc += curVal.product.get_price * curVal.quantity
       }, 0)
     },
     cartTotalLength() {

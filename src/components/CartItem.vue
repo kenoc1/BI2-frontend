@@ -25,6 +25,7 @@ export default {
     },
     methods: {
         getItemTotal(item) {
+          console.log(item)
             return item.quantity * item.product.get_price
         },
         decrementQuantity(item) {

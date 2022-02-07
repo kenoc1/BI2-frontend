@@ -15,7 +15,7 @@
                 <p v-else><strong>Evaluation: </strong>Nothing to show </p>
 
                 <p><strong>Price: </strong>{{ product.get_price }}€</p>
-                <p v-if="product.discount!=0 && product.discount!=null"><strong>Discount: {{product.discount}}</strong></p>
+                <p v-if="product.discount!==0 && product.discount!=null"><strong>Discount: {{product.discount}}</strong></p>
 
                 <div class="field has-addons mt-6">
                     <div class="control">
@@ -82,6 +82,7 @@
                 this.$store.commit('setIsLoading', false)
             },
             addToCart() {
+              console.log("test")
                 if (isNaN(this.quantity) || this.quantity < 1) {
                     this.quantity = 1
                 }
