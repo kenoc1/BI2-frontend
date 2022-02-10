@@ -25,8 +25,13 @@ export default createStore({
           state.isAuthenticated = false
       } 
     },
+
+    getitems(state) {
+      return state.cart.items
+    },
+
     addToCart(state, item) {
-      const exists = state.cart.items.filter(i => i.product.id === item.product.id)
+      const exists = state.cart.items.filter(i => i.product.sku === item.product.sku)
       if (exists.length) {
         exists[0].quantity = parseInt(exists[0].quantity) + parseInt(item.quantity)
       } else {

@@ -18,7 +18,7 @@
           {{ actualPrice }}€ |
           <del>{{ product.get_price }}€</del>
         </p>
-        <p v-if="product.discount!=0 && product.discount!=null"><strong>Discount: {{ discountInPercent }}</strong></p>
+        <p v-if="product.discount!==0 && product.discount!=null"><strong>Discount: {{ discountInPercent }}</strong></p>
 
         <div class="field has-addons mt-6">
           <div class="control">
