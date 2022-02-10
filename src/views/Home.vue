@@ -1,36 +1,33 @@
 <template>
   <div class="home">
     <section class="hero is-medium is-dark mb-6">
-        <div class="hero-body has-text-centered">
-            <p class="title mb-6">
-                Welcome to IBSUPERMARKT!
-            </p>
-            <p class="subtitle">
-                The best store online
-            </p>
-        </div>
+      <div class="hero-body has-text-centered">
+        <p class="title mb-6">
+          Welcome to IBSUPERMARKT!
+        </p>
+        <p class="subtitle">
+          The best store online
+        </p>
+      </div>
     </section>
 
-    <div class="columns is-multiline">
+    <div class="">
       <div class="column is-12">
-          <h2 class="is-size-2 has-text-centered">Products on sale!</h2>
+        <h2 class="is-size-2 has-text-centered">Products on sale!</h2>
       </div>
 
-      <ProductBox
-          v-for="product in latestProducts"
-          v-bind:key="product.id"
-          v-bind:product="product"/>
+      <Slide sliderName="discounts"
+             v-bind:products="latestProducts"/>
+
     </div>
 
     <hr>
-    <h2 class="is-size-2 has-text-centered">Diese Produkte könnten Sie interessieren</h2>
+    <h2 class="is-size-2 has-text-centered">These products may interest you</h2>
 
-    <Slide
-      v-bind:products="latestProducts"/>
+    <Slide sliderName="assosiations"
+           v-bind:products="latestProducts"/>
 
   </div>
-
-
 
 
 </template>
@@ -76,7 +73,5 @@ export default {
       this.$store.commit('setIsLoading', false)
     }
   },
-
-
 }
 </script>
