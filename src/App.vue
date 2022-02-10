@@ -4,7 +4,8 @@
       <div class="navbar-brand">
         <router-link to="/" class="navbar-item"><strong>IBSUPERMARKT</strong></router-link>
 
-        <a class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu" @click="showMobileMenu = !showMobileMenu">
+        <a class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu"
+           @click="showMobileMenu = !showMobileMenu">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -61,11 +62,11 @@
       <div class="lds-dual-ring"></div>
     </div>
 
-    <section class="section">
+    <section class="section has-background-light is-clipped">
       <router-view/>
     </section>
 
-    <footer class="footer">
+    <footer class="footer has-background-light">
       <p class="has-text-centered">Copyright (c) IBS Oldenburg 2022</p>
     </footer>
   </div>
@@ -89,24 +90,24 @@ export default {
     const token = this.$store.state.token
 
     if (token) {
-        axios.defaults.headers.common['Authorization'] = "Token " + token
+      axios.defaults.headers.common['Authorization'] = "Token " + token
     } else {
-        axios.defaults.headers.common['Authorization'] = ""
+      axios.defaults.headers.common['Authorization'] = ""
     }
   },
   mounted() {
     this.cart = this.$store.state.cart
   },
   computed: {
-      cartTotalLength() {
-          let totalLength = 0
+    cartTotalLength() {
+      let totalLength = 0
 
-          for (let i = 0; i < this.cart.items.length; i++) {
-              totalLength += this.cart.items[i].quantity
-          }
-
-          return totalLength
+      for (let i = 0; i < this.cart.items.length; i++) {
+        totalLength += this.cart.items[i].quantity
       }
+
+      return totalLength
+    }
   }
 }
 </script>
@@ -119,6 +120,7 @@ export default {
   width: 80px;
   height: 80px;
 }
+
 .lds-dual-ring:after {
   content: " ";
   display: block;
@@ -130,6 +132,7 @@ export default {
   border-color: #ccc transparent #ccc transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }
+
 @keyframes lds-dual-ring {
   0% {
     transform: rotate(0deg);

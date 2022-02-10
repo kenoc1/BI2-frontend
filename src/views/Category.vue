@@ -10,21 +10,28 @@
           v-bind:key="product.id"
           v-bind:product="product"/>
     </div>
-    <Paginator v-bind:page="page_json" @PageChange ="getCategory">"</Paginator>
+    <Paginator v-bind:page="page_json" @PageChange="getCategory">"</Paginator>
+    <hr>
+    <h2 class="is-size-2 has-text-centered">Diese Produkte könnten Sie interessieren</h2>
+
+    <Slide
+        v-bind:products="product"/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import {toast} from 'bulma-toast'
-
+import Slide from '@/components/Slide'
 import ProductBox from '@/components/ProductBox'
 import Paginator from "../components/Paginator";
+
 export default {
   name: 'Category',
   components: {
     Paginator,
-    ProductBox
+    ProductBox,
+    Slide
   },
   data() {
     return {
@@ -46,8 +53,8 @@ export default {
   methods: {
     async getCategory(event) {
       const categorySlug = this.$route.params.category_slug
-      this.$store.commit('setIsLoading', true)
 
+      this.$store.commit('setIsLoading', true)
       var url = '/api/v1/products/' + categorySlug
       if (undefined !== event){
         url = url + ('?pg='+event)
@@ -57,11 +64,8 @@ export default {
           .get(url)
           //.get(`/api/v1/products/test/`)
           .then(response => {
-            var page_data = response.data['page'];
-            var pageJson = JSON.parse(page_data);
-            this.product = pageJson.objects
+            this.product = response.data['products']
             this.category = response.data['family_data']
-            this.page_json = pageJson
             //document.title = this.family.name + ' | IBSUPERMARKT'
             document.title = ' Family | IBSUPERMARKT'
           })
@@ -83,6 +87,3 @@ export default {
   }
 }
 </script>
-<style>
-
-</style>
