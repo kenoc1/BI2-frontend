@@ -15,7 +15,7 @@
                 <p v-else><strong>Evaluation: </strong>Nothing to show </p>
 
                 <p><strong>Price: </strong>{{ product.get_price }}€</p>
-                <p v-if="product.discount!=0 && product.discount!=null"><strong>Discount: {{product.discount}}</strong></p>
+                <p v-if=" product.discount!=null &&product.discount!==0"><strong>Discount: {{product.discount}}</strong></p>
 
                 <div class="field has-addons mt-6">
                     <div class="control">
@@ -90,7 +90,6 @@
                     product: this.product,
                     quantity: this.quantity
                 }
-
                 this.$store.commit('addToCart', item)
 
                 toast({

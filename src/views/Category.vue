@@ -19,8 +19,7 @@ import axios from 'axios'
 import {toast} from 'bulma-toast'
 
 import ProductBox from '@/components/ProductBox'
-import Paginator from "../components/Paginator/Paginator";
-
+import Paginator from "../components/Paginator";
 export default {
   name: 'Category',
   components: {
