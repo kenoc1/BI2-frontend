@@ -14,7 +14,7 @@
     <hr>
     <h2 class="is-size-2 has-text-centered">Diese Produkte könnten Sie interessieren</h2>
 
-    <Slide
+    <Slide sliderName="assosiations"
         v-bind:products="product"/>
 
 
