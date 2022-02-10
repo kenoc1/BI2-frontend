@@ -40,6 +40,12 @@
       </div>
     </div>
   </div>
+
+  <hr>
+
+
+  <div class="card box column"></div>
+
 </template>
 
 <script>

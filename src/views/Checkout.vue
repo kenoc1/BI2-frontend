@@ -62,14 +62,14 @@
             <div class="field">
               <label>E-mail*</label>
               <div class="control">
-                <input type="email" class="input" v-model="email">
+                <input type="email" class="input"   v-model="email">
               </div>
             </div>
 
             <div class="field">
               <label>Phone*</label>
               <div class="control">
-                <input type="text" class="input" v-model="phone">
+                <input type="tel" class="input" v-model="phone">
               </div>
             </div>
           </div>
@@ -99,7 +99,7 @@
             <div class="field rows">
               <label>Payment Provider*</label>
               <div class="select row is-full">
-                <select>
+                <select v-model="paymentservice">
                   <option>Select payment methode</option>
                   <option>Bar</option>
                   <option>Paypal</option>
@@ -125,7 +125,6 @@
 
         <button class="button is-dark" @click="submitForm">Pay</button>
 
-        <div id="card-element" class="mb-5"></div>
 
       </div>
     </div>
@@ -143,7 +142,6 @@ export default {
         items: []
       },
       stripe: {},
-      card: {},
       first_name: '',
       last_name: '',
       email: '',
@@ -160,20 +158,13 @@ export default {
 
     this.cart = this.$store.state.cart
 
-    if (this.cartTotalLength > 0) {
-      this.stripe = Stripe('pk_test_51H1HiuKBJV2qfWbD2gQe6aqanfw6Eyul5PO2KeOuSRlUMuaV4TxEtaQyzr9DbLITSZweL7XjK3p74swcGYrE2qEX00Hz7GmhMI')
-      const elements = this.stripe.elements();
-      this.card = elements.create('card', {hidePostalCode: true})
-
-      //TODO: Klären warum das gemounted werden muss
-      this.card.mount('#card-element')
-    }
   },
   methods: {
     getItemTotal(item) {
       return item.quantity * item.product.get_price
     },
     submitForm() {
+      window.alert("test")
       this.errors = []
 
       if (this.first_name === '') {
