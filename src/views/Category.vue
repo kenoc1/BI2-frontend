@@ -10,7 +10,7 @@
           v-bind:key="product.id"
           v-bind:product="product"/>
     </div>
-    <Paginator v-bind:page="page_json" @PageChange="getCategory">"</Paginator>
+    <Paginator v-bind:page="page_json" @PageChange="getCategory"></Paginator>
     <hr>
     <h2 class="is-size-2 has-text-centered">Diese Produkte könnten Sie interessieren</h2>
 
@@ -64,8 +64,11 @@ export default {
           .get(url)
           //.get(`/api/v1/products/test/`)
           .then(response => {
-            this.product = response.data['products']
+             var page_data = response.data['page'];
+            var pageJson = JSON.parse(page_data);
+            this.product = pageJson.objects
             this.category = response.data['family_data']
+            this.page_json = pageJson
             //document.title = this.family.name + ' | IBSUPERMARKT'
             document.title = ' Family | IBSUPERMARKT'
           })

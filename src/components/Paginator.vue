@@ -2,7 +2,7 @@
   <hr>
   <div  className="pagination">
     <a @click="$emit('PageChange', page.current_page -1)" v-if="page.current_page!==1">&laquo;</a>
-    <a v-for="index in end_number - start_number + 1" :key="page.id" @click="$emit('PageChange', index + start_number - 1)"
+    <a v-for="index in array_length + 1" :key="page.id" @click="$emit('PageChange', index + start_number - 1 )"
        v-bind:class="{ active: index+start_number -1===page.current_page }"> {{ index + start_number - 1 }}</a>
     <a @click="$emit('PageChange', page.current_page +1)" v-if="page.current_page < page.total_page_number">&raquo;</a>
   </div>
@@ -22,6 +22,7 @@ export default {
       } else if (this.$props.page.current_page <= 4) {
         this.start_number = 1
       }
+      return this.start_number
     },
     calc_end_page: function () {
       if (this.$props.page.total_page_number >= this.$props.page.current_page + 5) {
@@ -29,18 +30,22 @@ export default {
       } else {
         this.end_number = this.$props.page.total_page_number
       }
+      return this.end_number
     },
+    calc_array_length: function (start, end){
+      this.array_length = end - start
+    }
   }
   ,
   beforeUpdate() {
-    this.calc_end_page()
-    this.calc_start_page()
+    this.calc_array_length(this.calc_start_page(), this.calc_end_page())
   }
   ,
   data() {
     return {
       start_number: null,
-      end_number: null
+      end_number: null,
+      array_length: null
     }
   }
 }
