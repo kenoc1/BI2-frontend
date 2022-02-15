@@ -75,11 +75,22 @@
           </div>
 
           <div class="column is-6">
-            <div class="field">
-              <label>Address*</label>
-              <div class="control">
-                <input type="text" class="input" v-model="address">
+            <div class="field columns">
+
+              <div class="control column is-10 ">
+                <label class="">Address*</label>
+                <div class="control  ">
+                  <input type="text" class="input" v-model="address">
+                </div>
               </div>
+
+              <div class="control column is-2">
+                <label class="">Number*</label>
+                <div class="control">
+                  <input type="text" class="input" v-model="number">
+                </div>
+              </div>
+
             </div>
 
             <div class="field">
@@ -126,7 +137,6 @@
         <button class="button is-dark" @click="submitForm">Pay</button>
 
 
-
       </div>
     </div>
   </div>
@@ -150,7 +160,8 @@ export default {
       zipcode: '',
       place: '',
       errors: [],
-      paymentservice: ''
+      paymentservice: '',
+      number: '',
     }
   },
   mounted() {
@@ -197,7 +208,8 @@ export default {
 
       if (this.paymentservice === '') {
         this.errors.push('The paymentservice is not choosen!')
-      } console.log(this.paymentservice)
+      }
+      console.log(this.paymentservice)
 
       if (!this.errors.length) {
         this.$store.commit('setIsLoading', true)
@@ -227,6 +239,7 @@ export default {
         'zipcode': this.zipcode,
         'place': this.place,
         'phone': this.phone,
+        'numer': this.number,
         'items': items,
         'payment_service': this.paymentservice
       }
@@ -263,10 +276,17 @@ export default {
 
 <style>
 
-.rows{
-    display: flex;
-    flex-direction: column;
-    width: 230px;
+.rows {
+  display: flex;
+  flex-direction: column;
+  width: 230px;
 }
+
+.cols {
+  display: flex;
+  flex-direction: row;
+  width: 230px;
+}
+
 
 </style>
