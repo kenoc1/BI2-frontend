@@ -1,7 +1,7 @@
 name: PROD - Azure Static Web Apps CI/CD
 
 env:
-  VUE_APP_ROOT_API: https://http://134.106.56.44:16899
+  VUE_APP_ROOT_API: http://134.106.56.44:16899
 
 on:
   push:
