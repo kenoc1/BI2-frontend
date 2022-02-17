@@ -1,7 +1,7 @@
 <template>
     <tr>
         <td><router-link :to="item.product.get_absolute_url">{{ item.product.name }}</router-link></td>
-        <td>${{ item.product.price }}</td>
+        <td>€{{ item.product.get_price }}</td>
         <td>
             {{ item.quantity }}
             <a @click="decrementQuantity(item)">-</a>
@@ -25,7 +25,8 @@ export default {
     },
     methods: {
         getItemTotal(item) {
-            return item.quantity * item.product.price
+          console.log(item)
+            return item.quantity * item.product.get_price
         },
         decrementQuantity(item) {
             item.quantity -= 1

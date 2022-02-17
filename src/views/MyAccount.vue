@@ -39,7 +39,7 @@ export default {
         }
     },
     mounted() {
-        document.title = 'My account | Djackets'
+        document.title = 'My account | IBSUPERMARKT'
 
         this.getMyOrders()
     },
