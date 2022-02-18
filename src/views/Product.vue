@@ -43,20 +43,33 @@
 
       </div>
     </div>
+
+    <hr >
+
+    <h2 class="is-size-2 has-text-centered">Similar Products</h2>
+
+    <Slide sliderName="assosiations"
+           v-bind:products="associated_products"/>
+
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import {toast} from 'bulma-toast'
+import Slide from '@/components/Slide'
 
 export default {
   name: 'Product',
   data() {
     return {
       product: {},
-      quantity: 1
+      quantity: 1,
+      associated_products: [],
     }
+  },
+  components: {
+    Slide
   },
   mounted() {
     this.getProduct()
@@ -81,7 +94,9 @@ export default {
           //.get('/api/v1/one/')
           .then(response => {
 
-            this.product = response.data;
+            console.log(response.data)
+            this.product = response.data['product'];
+            this.associated_products = response.data['associations']
 
 
             document.title = this.product.name + ' | IBSUPERMARKT'

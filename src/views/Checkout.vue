@@ -33,6 +33,7 @@
             <td colspan="2">Total</td>
             <td>{{ cartTotalLength }}</td>
             <td>${{ cartTotalPrice.toFixed(2) }}</td>
+            <td>${{ cartTotalPrice.toFixed(2) }}</td>
           </tr>
           </tfoot>
         </table>
@@ -209,7 +210,6 @@ export default {
       if (this.paymentservice === '') {
         this.errors.push('The paymentservice is not choosen!')
       }
-      console.log(this.paymentservice)
 
       if (!this.errors.length) {
         this.$store.commit('setIsLoading', true)
