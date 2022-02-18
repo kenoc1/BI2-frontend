@@ -15,8 +15,10 @@
         <p v-else><strong>Evaluation: </strong>Nothing to show </p>
 
         <p><strong>Price: </strong>
-          {{ actualPrice }}€ |
-          <del>{{ product.get_price }}€</del>
+          {{ actualPrice }}€
+          <span v-if="product.discount!==0">
+            | <del>{{ product.get_price }}€</del>
+          </span>
         </p>
         <p v-if="product.discount!==0 && product.discount!=null"><strong>Discount: {{ discountInPercent }}</strong></p>
 
