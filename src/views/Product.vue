@@ -99,12 +99,11 @@ export default {
         this.quantity = 1
       }
 
-      const item = {
-        product: this.product,
-        quantity: this.quantity
-      }
-
-      this.$store.commit('addToCart', item)
+                const item = {
+                    product: this.product,
+                    quantity: this.quantity
+                }
+                this.$store.commit('addToCart', item)
 
       toast({
         message: 'The product was added to the cart',
