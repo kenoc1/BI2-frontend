@@ -1,24 +1,40 @@
 <template>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <div class="page-product">
     <div class="columns is-multiline">
-      <div class="column is-7">
-        <figure class="image mb-6">
-          <img v-bind:src="product.get_image">
+      <div class="column is-5">
+        <figure class="image mb-6 productcontainer">
+          <span v-if="product.discount > 0"
+                class="discount is-top-0 is-right-0 ml-4 mt-4 tag has-text-weight-bold is-size-5"
+                :class="product.discount > 0.4 ? 'is-danger' : 'is-warning'">{{ discountInPercent }}</span>
+          <span v-if="product.discount === 0"
+                class="discount is-top-0 is-right-0 ml-4 mt-4 tag has-text-weight-bold is-size-5 is-white"></span>
+          <img class="productcontainer2 " v-bind:src="product.get_image">
         </figure>
       </div>
 
       <div class="column is-5">
 
-        <h1 class="title">{{ product.name }}</h1>
+        <h5 class="title">{{ product.name }}</h5>
+        <p class="has-text-grey ">SKU: {{ product.sku }}</p>
 
         <p v-if="product.evaluation!=null"><strong>Evaluation: </strong>{{ product.evaluation }}</p>
         <p v-else><strong>Evaluation: </strong>Nothing to show </p>
+
+        <hr class="border">
 
         <p><strong>Price: </strong>
           {{ actualPrice }}€ |
           <del>{{ product.get_price }}€</del>
         </p>
-        <p v-if="product.discount!==0 && product.discount!=null"><strong>Discount: {{ discountInPercent }}</strong></p>
+
+
+        <p  v-if="product.recycle=1"><strong>recycle: </strong> <i class="fa fa-lg fa-check-circle"/> </p>
+        <p v-if="product.recycle=0"><strong>recycle: </strong><i class="fa fa-lg fa-check-circle"/></p>
+
+        <p v-if="product.lowfat=1"><strong>low-fat: </strong><i class="fa fa-lg fa-check-circle"/></p>
+        <p v-if="product.lowfat=0"><strong>low-fat: </strong><i class="fa fa-lg fa-check-circle"/></p>
 
         <div class="field has-addons mt-6">
           <div class="control">
@@ -33,18 +49,10 @@
         <h2 class="subtitle"><strong>Details:</strong></h2>
         <p v-if="product.description!=null">{{ product.description }}</p>
 
-        <p style="padding-top:20px;"><strong>SKU: </strong>{{ product.sku }}</p>
-
-        <p v-if="product.recycle=1"><strong>recycle: </strong>yes</p>
-        <p v-if="product.recycle=0"><strong>recycle: </strong>no</p>
-
-        <p v-if="product.lowfat=1"><strong>low-fat: </strong>yes</p>
-        <p v-if="product.lowfat=0"><strong>low-fat: </strong>no</p>
-
       </div>
     </div>
 
-    <hr >
+    <hr>
 
     <h2 class="is-size-2 has-text-centered">Similar Products</h2>
 
@@ -112,11 +120,11 @@ export default {
         this.quantity = 1
       }
 
-                const item = {
-                    product: this.product,
-                    quantity: this.quantity
-                }
-                this.$store.commit('addToCart', item)
+      const item = {
+        product: this.product,
+        quantity: this.quantity
+      }
+      this.$store.commit('addToCart', item)
 
       toast({
         message: 'The product was added to the cart',
@@ -152,4 +160,29 @@ export default {
 .seperator h5 span {
   padding: 0 2em;
 }
+
+.border {
+  border-top: 2px solid lightgray;
+}
+
+.discount {
+  position: absolute;
+  z-index: 99;
+}
+
+.productcontainer {
+  position: relative;
+  height: 800px;
+  width: 550px;
+}
+
+.productcontainer2 {
+  position: relative;
+  border: 1px solid #d5d5d5;
+}
+
+.fa-check-circle {
+  color: green;
+}
+
 </style>
