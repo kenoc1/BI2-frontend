@@ -88,6 +88,9 @@ export default {
       window.scrollTo(0,0)
     }
   },
+  beforeCreate() {
+    window.scrollTo(0,0)
+  },
   methods: {
     async getProduct() {
       this.$store.commit('setIsLoading', true)
