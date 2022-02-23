@@ -14,7 +14,7 @@
     <hr>
     <h2 class="is-size-2 has-text-centered">Diese Produkte könnten Sie interessieren</h2>
 
-    <Slide
+    <Slide sliderName="assosiations"
         v-bind:products="product"/>
   </div>
 </template>
@@ -37,7 +37,7 @@ export default {
     return {
       category: [],
       product: [],
-      page_json:[]
+      page_json: []
     }
   },
   mounted() {
@@ -56,15 +56,16 @@ export default {
 
       this.$store.commit('setIsLoading', true)
       var url = '/api/v1/products/' + categorySlug
-      if (undefined !== event){
-        url = url + ('?pg='+event)
+      if (undefined !== event) {
+        url = url + ('?pg=' + event)
       }
 
       axios
           .get(url)
           //.get(`/api/v1/products/test/`)
           .then(response => {
-             var page_data = response.data['page'];
+            console.log(response)
+            var page_data = response.data['page'];
             var pageJson = JSON.parse(page_data);
             this.product = pageJson.objects
             this.category = response.data['family_data']

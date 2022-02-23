@@ -12,6 +12,7 @@
         <a class="mt-2 mb-2 px-6 is-block" href="{{ product.get_absolute_url }}">
           <img class="mx-auto mb-5 image" style="height: 224px; object-fit: contain;" v-bind:src="product.get_thumbnail"
                alt="">
+          <star-rating v-bind:product-rating="product.evaluation"></star-rating>
           <h5 class="title is-size-5 mb-2">{{ product.name }}</h5>
           <p>
             <span class="has-text-success is-size-4 has-text-weight-bold">{{ actualPrice }}€ </span>
@@ -25,8 +26,10 @@
 </template>
 
 <script>
+import StarRating from "./starRating";
 export default {
   name: 'ProductBox',
+  components: {StarRating},
   props: {
     product: Object
   },
