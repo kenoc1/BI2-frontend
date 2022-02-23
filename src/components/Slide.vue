@@ -75,10 +75,15 @@ section {
 }
 
 section::-webkit-scrollbar {
-  height: 3px;
+  height: 6px;
   width: 2px;
   border: 1px solid #d5d5d5;
   background: #d5d5d5;
+}
+
+section::-webkit-scrollbar:hover {
+  height: 6px;
+  transform: scale(1.1);
 }
 
 
