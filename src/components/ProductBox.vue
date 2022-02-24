@@ -6,13 +6,14 @@
         <span v-if="product.discount > 0"
               class="is-absolute is-top-0 is-left-0 ml-4 mt-4 tag has-text-weight-bold is-size-5"
               :class="product.discount > 0.4 ? 'is-danger' : 'is-warning'">{{ discountInPercent }}</span>
-        <span v-if="product.discount == 0"
+        <span v-if="product.discount === 0"
               class="is-absolute is-top-0 is-left-0 ml-4 mt-4 tag has-text-weight-bold is-size-5 is-white"></span>
 
         <a class="mt-2 mb-2 px-6 is-block" href="{{ product.get_absolute_url }}">
           <img class="mx-auto mb-5 image" style="height: 224px; object-fit: contain;" v-bind:src="product.get_thumbnail"
                alt="">
-          <h5 class="title is-size-5 mb-2">{{ product.name }}</h5>
+          <star-rating v-bind:product-rating="product.evaluation"></star-rating>
+          <h5 class="title is-size-5 mb-2 is-text-overflow">{{ product.name }}</h5>
           <p>
             <span class="has-text-success is-size-4 has-text-weight-bold">{{ actualPrice }}€ </span>
             <span v-if="product.discount > 0" class="has-text-grey-dark is-size-5 has-text-weight-normal"
@@ -25,8 +26,10 @@
 </template>
 
 <script>
+import StarRating from "./starRating";
 export default {
   name: 'ProductBox',
+  components: {StarRating},
   props: {
     product: Object
   },
@@ -54,4 +57,12 @@ export default {
   transition: all .3s;
   border: 1px solid lightgray;
 }
+
+.is-text-overflow {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 </style>
