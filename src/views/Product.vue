@@ -22,7 +22,7 @@
         <p class="detail-text mb-4" v-if="product.description!=null">{{ product.description }}</p>
 
         <p class="price mb-1"> {{ actualPrice }}€
-        <del class="old-price price" v-if="product.discount >0 ">{{ product.get_price }}€</del>
+          <del class="old-price price" v-if="product.discount >0 ">{{ product.get_price }}€</del>
         </p>
         <div class="field has-addons">
           <div class="control">
@@ -81,6 +81,15 @@ export default {
     actualPrice() {
       return ((this.product.get_price - (this.product.discount * this.product.get_price)).toFixed(2))
     }
+  },
+  watch: {
+    '$route' (to, from) {
+      this.getProduct()
+      window.scrollTo(0,0)
+    }
+  },
+  beforeCreate() {
+    window.scrollTo(0,0)
   },
   methods: {
     async getProduct() {
