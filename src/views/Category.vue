@@ -52,10 +52,15 @@ export default {
   },
   methods: {
     async getCategory(event) {
-      const categorySlug = this.$route.params.category_slug
+      const familySlug = this.$route.params.family_slug
+      let divisionSlug = '';
+      if (this.$route.params.division_slug){
+        divisionSlug = '/' + this.$route.params.division_slug
 
+      }
+      console.log(familySlug)
       this.$store.commit('setIsLoading', true)
-      var url = '/api/v1/products/' + categorySlug
+      var url = '/api/v1/products/' + familySlug + divisionSlug
       if (undefined !== event) {
         url = url + ('?pg=' + event)
       }

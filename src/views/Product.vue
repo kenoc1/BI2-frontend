@@ -87,6 +87,7 @@ export default {
       this.$store.commit('setIsLoading', true)
 
       const category_slug = this.$route.params.category_slug
+      console.log(category_slug)
       const product_slug = this.$route.params.product_slug
 
       await axios

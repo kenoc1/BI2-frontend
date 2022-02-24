@@ -27,6 +27,36 @@
     <Slide sliderName="assosiations"
            v-bind:products="latestProducts"/>
 
+
+    <div class="">
+      <div class="column is-12">
+        <h2 class="is-size-2 has-text-centered">Best Products from our Food category!</h2>
+      </div>
+
+      <Slide sliderName="favoriteFood"
+             v-bind:products="latestProducts"/>
+
+    </div>
+
+    <div class="">
+      <div class="column is-12">
+        <h2 class="is-size-2 has-text-centered">Best Products from our Drink category!</h2>
+      </div>
+
+      <Slide sliderName="favoriteDrink"
+             v-bind:products="latestProducts"/>
+
+    </div>
+
+    <div class="">
+      <div class="column is-12">
+        <h2 class="is-size-2 has-text-centered">Best Products from our NonConsumable category!</h2>
+      </div>
+
+      <Slide sliderName="favoriteNonConsumable"
+             v-bind:products="latestProducts"/>
+
+    </div>
   </div>
 
 
