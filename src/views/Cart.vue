@@ -71,6 +71,7 @@ export default {
   mounted() {
     this.cart = this.$store.state.cart
     this.getLatestProducts()
+    this.getAssosiationsCart()
   },
   methods: {
     removeFromCart(item) {
@@ -94,9 +95,11 @@ export default {
 
     async getAssosiationsCart() {
       this.$store.commit('setIsLoading', true)
-
+      const data= []
+      this.cart.items.forEach(item => data.push(item.product.sku))
       await axios
-          .get('/api/v1/cart-recommendations/')
+
+          .post('/api/v1/cart-recommendations/',{'items':data})
           .then(response => {
             this.assosiationsCart = response.data
           })
