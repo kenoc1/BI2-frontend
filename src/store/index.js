@@ -7,10 +7,22 @@ export default createStore({
     },
     isAuthenticated: false,
     token: '',
-    isLoading: false
+    isLoading: false,
+    filterParams: [],
+    priceSortParam: '',
+    ratingSortParam: ''
   },
   mutations: {
     initializeStore(state) {
+      if(localStorage.getItem('filterParams')){
+        state.filterParams  = localStorage.getItem('filterParams')
+      }
+      if(localStorage.getItem('priceSortParam')){
+        state.priceSortParam  = localStorage.getItem('priceSortParam')
+      }
+      if(localStorage.getItem('ratingSortParam')){
+        state.ratingSortParam  = localStorage.getItem('ratingSortParam')
+      }
       if (localStorage.getItem('cart')) {
         state.cart = JSON.parse(localStorage.getItem('cart'))
       } else {
@@ -55,6 +67,18 @@ export default createStore({
       state.cart = { items: [] }
 
       localStorage.setItem('cart', JSON.stringify(state.cart))
+    },
+    saveFilter(state, filterParams){
+      state.filterParams = filterParams
+      localStorage.setItem('filterParams',filterParams)
+    },
+    savePriceSort(state, sortParam){
+      state.priceSortParam = sortParam
+      localStorage.setItem('priceSortParam',sortParam)
+    },
+    saveRatingSort(state, sortParam){
+      state.ratingSortParam = sortParam
+      localStorage.setItem('ratingSortParam',sortParam)
     },
   },
   actions: {
