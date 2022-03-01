@@ -94,13 +94,10 @@ export default {
   methods: {
     async getProduct() {
       this.$store.commit('setIsLoading', true)
-
-      const category_slug = this.$route.params.category_slug
-      console.log(category_slug)
       const product_slug = this.$route.params.product_slug
-
+      console.log(product_slug)
       await axios
-          .get(`/api/v1/${category_slug}/${product_slug}`)
+          .get(`/api/v1/product/${product_slug}`)
           //.get('/api/v1/one/')
           .then(response => {
 

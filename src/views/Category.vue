@@ -45,9 +45,7 @@ export default {
   },
   watch: {
     $route(to, from) {
-      if (to.name === 'Category') {
-        this.getCategory()
-      }
+      this.getCategory()
     }
   },
   methods: {
