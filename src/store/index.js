@@ -10,7 +10,8 @@ export default createStore({
     isLoading: false,
     filterParams: [],
     priceSortParam: '',
-    ratingSortParam: ''
+    nameSortParam: '',
+    priceRange: []
   },
   mutations: {
     initializeStore(state) {
@@ -21,7 +22,10 @@ export default createStore({
         state.priceSortParam  = localStorage.getItem('priceSortParam')
       }
       if(localStorage.getItem('ratingSortParam')){
-        state.ratingSortParam  = localStorage.getItem('ratingSortParam')
+        state.nameSortParam  = localStorage.getItem('nameSortParam')
+      }
+      if(localStorage.getItem('priceRange')){
+        state.priceRange = localStorage.getItem('priceRange')
       }
       if (localStorage.getItem('cart')) {
         state.cart = JSON.parse(localStorage.getItem('cart'))
@@ -76,10 +80,22 @@ export default createStore({
       state.priceSortParam = sortParam
       localStorage.setItem('priceSortParam',sortParam)
     },
-    saveRatingSort(state, sortParam){
-      state.ratingSortParam = sortParam
-      localStorage.setItem('ratingSortParam',sortParam)
+    saveNameSort(state, sortParam){
+      state.nameSortParam = sortParam
+      localStorage.setItem('nameSortParam',sortParam)
     },
+    savePriceRange(state, range){
+      state.priceRange = range
+      localStorage.setItem('priceRange', range)
+    },
+    removePriceSort(state){
+      state.priceSortParam = ''
+      localStorage.removeItem('priceSortParam')
+    },
+    removeNameSort(state){
+      state.nameSortParam = ''
+      localStorage.removeItem('nameSortParam')
+    }
   },
   actions: {
   },

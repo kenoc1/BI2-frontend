@@ -49,38 +49,42 @@
             <div class="column">
               <div class="rows" id="filter-block">
                 <div class="row">
-                  <input type="checkbox" class="rating-checkbox" id="1" value='1' v-model="checkedRatings">
+                  <label @click="setRatingFilter(1);">
+                    <input type="checkbox" class="rating-checkbox" id="1" value='1' v-model="checkedRatings">
+                  </label>
                   <span v-for="index in 5" v-bind:class="{ checked: index <= 1 }" class="fa fa-star"></span>
 
                 </div>
                 <div class="row">
-                  <input type="checkbox" class="rating-checkbox" id="2" value='2' v-model="checkedRatings">
+                  <label @click="setRatingFilter(2);">
+                    <input type="checkbox" class="rating-checkbox" id="2" value='2' v-model="checkedRatings">
+                  </label>
                   <span v-for="index in 5" v-bind:class="{ checked: index <= 2 }" class="fa fa-star"></span>
 
                 </div>
                 <div class="row">
-                  <input type="checkbox" class="rating-checkbox" id="3" value='3' v-model="checkedRatings">
+                  <label @click="setRatingFilter(3);">
+                    <input type="checkbox" class="rating-checkbox" id="3" value='3' v-model="checkedRatings">
+                  </label>
                   <span v-for="index in 5" v-bind:class="{ checked: index <= 3 }" class="fa fa-star"></span>
 
                 </div>
                 <div class="row">
-                  <input type="checkbox" class="rating-checkbox" id="4" value='4' v-model="checkedRatings">
+                  <label @click="setRatingFilter(4);">
+                    <input type="checkbox" class="rating-checkbox" id="4" value='4' v-model="checkedRatings">
+                  </label>
                   <span v-for="index in 5" v-bind:class="{ checked: index <= 4 }" class="fa fa-star"></span>
 
                 </div>
                 <div class="row">
-                  <input type="checkbox" class="rating-checkbox" id="5" value='5' v-model="checkedRatings">
+                  <input @click="setRatingFilter(5)" type="checkbox" class="rating-checkbox" id="5" value='5'
+                         v-model="checkedRatings">
                   <span v-for="index in 5" v-bind:class="{ checked: index <= 5 }" class="fa fa-star"></span>
-
-                </div>
-                <div class="row">
-                  <button @click="setRatingFilter();"
-                          class="button is-small mt-2 ml-2 filter-button"
-                          id="filter-button">Start
-                    Filter
-                  </button>
                 </div>
               </div>
+            </div>
+            <div class="column">
+              <RangeSlider @PriceFilter="forwardEvent"></RangeSlider>
             </div>
           </div>
         </div>
@@ -105,11 +109,11 @@ export default {
         document.getElementById(filterParams[i]).checked = true;
       }
     },
-    showActiveLink(){
-      if(this.$store.state.priceSortParam === 'HighToLow'){
+    showActiveLink() {
+      if (this.$store.state.priceSortParam === 'HighToLow') {
         document.getElementById('HighToLow').classList.add('active-element')
         document.getElementById('LowToHigh').classList.remove('active-element')
-      } else if(this.$store.state.priceSortParam === 'LowToHigh'){
+      } else if (this.$store.state.priceSortParam === 'LowToHigh') {
         document.getElementById('LowToHigh').classList.add('active-element')
         document.getElementById('HighToLow').classList.remove('active-element')
       }
@@ -125,10 +129,24 @@ export default {
           direction);
       this.$emit('RatingSort');
     },
-    setRatingFilter() {
+    setRatingFilter(value) {
+      if (!this.checkedRatings.includes(value)) {
+        this.checkedRatings.push(value)
+      } else {
+        this.removeFromCheckedRatings(value)
+      }
       this.$store.commit('saveFilter', this.checkedRatings.join(''));
       this.$emit('RatingFilter');
     },
+    removeFromCheckedRatings(value) {
+      const index = this.checkedRatings.indexOf(value);
+      if (index > -1) {
+        this.checkedRatings.splice(index, 1); // 2nd parameter means remove one item only
+      }
+    },
+    forwardEvent(){
+      this.$emit('PriceFilter')
+    }
   },
   mounted() {
     this.checkBoxes()
@@ -189,10 +207,14 @@ export default {
 }
 
 #filter-block {
-  width: 120px;
+  width: 110px;
   padding-left: 4px;
+  padding-right: 4px;
+  border-right: 2px solid lightgray;
+  margin-right: 12px;
 }
-.active-element{
+
+.active-element {
   background-color: lightgray;
 }
 </style>
