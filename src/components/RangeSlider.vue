@@ -4,12 +4,14 @@
       <input type="range" min="0" max="99" step="1" v-model="sliderMin">
       <input type="range" min="0" max="99" step="1" v-model="sliderMax">
     </div>
-    <div class="row columns">
+    <div class="row columns mb-0">
       <div class="column number-div">
         <input type="number" min="0" max="99" step="1" v-model="sliderMin" class="is-size-7 number-input">
+        <i class="fa fa-eur" aria-hidden="true"></i>
       </div>
       <div class="column number-div">
         <input type="number" min="0" max="99" step="1" v-model="sliderMax" class="is-size-7  number-input">
+        <i class="fa fa-eur" aria-hidden="true"></i>
       </div>
     </div>
     <div class="row">
@@ -81,7 +83,7 @@ export default {
 }
 
 input[type=number] {
-  border:none;
+  border: none;
 }
 
 input[type=range] {
@@ -107,7 +109,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
-  height: 5px;
+  height: 7px;
   cursor: pointer;
   animate: 0.2s;
   background: lightgray;
@@ -120,11 +122,11 @@ input[type=range]::-webkit-slider-thumb {
   z-index: 2;
   position: relative;
   box-shadow: 0px 0px 0px #000;
-  border: 1px solid lightgray;
-  height: 13px;
-  width: 13px;
+  border: 1px solid #bababa;
+  height: 16px;
+  width: 16px;
   border-radius: 25px;
-  background: lightgray;
+  background: #bababa;
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -5.5px;
@@ -136,13 +138,27 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 .number-input {
-  width: 36px;
-}
-textarea:focus, input:focus{
-    outline: none;
+  width: 21px;
+  font-weight: bold;
+  font-size: 15px !important;
 }
 
-#range-button{
-  height: 20px;
+textarea:focus, input:focus {
+  outline: none;
+}
+
+#range-button {
+  height: 30px;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 </style>

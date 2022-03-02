@@ -13,22 +13,22 @@
           <div class="column">
             <p>Price</p>
             <a @click="setPriceSort('HighToLow')" href="#" class="dropdown-item" id="HighToLow">
-              <i class="fa fa-arrow-up mr-1 sort-item"></i>
+              <i class="fa fa-arrow-down mr-1 sort-item"></i>
               High to low
             </a>
             <a @click="setPriceSort('LowToHigh')" href="#" class="dropdown-item" id="LowToHigh">
-              <i class="fa fa-arrow-down mr-1 sort-item"></i>
+              <i class="fa fa-arrow-up mr-1 sort-item"></i>
               Low to high
             </a>
           </div>
           <div class="column">
             <p>Rating</p>
             <a @click="setRatingSort('HighToLow')" href="#" class="dropdown-item">
-              <i class="fa fa-arrow-up mr-1"></i>
+              <i class="fa fa-arrow-down mr-1"></i>
               High to low
             </a>
             <a @click="setRatingSort('LowToHigh')" href="#" class="dropdown-item">
-              <i class="fa fa-arrow-down mr-1"></i>
+              <i class="fa fa-arrow-up mr-1"></i>
               Low to high
             </a>
           </div>
@@ -49,36 +49,37 @@
             <div class="column">
               <div class="rows" id="filter-block">
                 <div class="row">
-                  <label @click="setRatingFilter(1);">
+                  <label @click="setRatingFilter(1);" class="checkbox-label">
                     <input type="checkbox" class="rating-checkbox" id="1" value='1' v-model="checkedRatings">
                   </label>
                   <span v-for="index in 5" v-bind:class="{ checked: index <= 1 }" class="fa fa-star"></span>
 
                 </div>
                 <div class="row">
-                  <label @click="setRatingFilter(2);">
+                  <label @click="setRatingFilter(2);" class="checkbox-label">
                     <input type="checkbox" class="rating-checkbox" id="2" value='2' v-model="checkedRatings">
                   </label>
                   <span v-for="index in 5" v-bind:class="{ checked: index <= 2 }" class="fa fa-star"></span>
 
                 </div>
                 <div class="row">
-                  <label @click="setRatingFilter(3);">
+                  <label @click="setRatingFilter(3);" class="checkbox-label">
                     <input type="checkbox" class="rating-checkbox" id="3" value='3' v-model="checkedRatings">
                   </label>
                   <span v-for="index in 5" v-bind:class="{ checked: index <= 3 }" class="fa fa-star"></span>
 
                 </div>
                 <div class="row">
-                  <label @click="setRatingFilter(4);">
+                  <label @click="setRatingFilter(4);" class="checkbox-label">
                     <input type="checkbox" class="rating-checkbox" id="4" value='4' v-model="checkedRatings">
                   </label>
                   <span v-for="index in 5" v-bind:class="{ checked: index <= 4 }" class="fa fa-star"></span>
 
                 </div>
                 <div class="row">
-                  <input @click="setRatingFilter(5)" type="checkbox" class="rating-checkbox" id="5" value='5'
-                         v-model="checkedRatings">
+                  <label @click="setRatingFilter(5);" class="checkbox-label">
+                    <input type="checkbox" class="rating-checkbox" id="5" value='5' v-model="checkedRatings">
+                  </label>
                   <span v-for="index in 5" v-bind:class="{ checked: index <= 5 }" class="fa fa-star"></span>
                 </div>
               </div>
@@ -144,7 +145,7 @@ export default {
         this.checkedRatings.splice(index, 1); // 2nd parameter means remove one item only
       }
     },
-    forwardEvent(){
+    forwardEvent() {
       this.$emit('PriceFilter')
     }
   },
@@ -216,5 +217,9 @@ export default {
 
 .active-element {
   background-color: lightgray;
+}
+:checked {
+  margin-left: 25px;
+  border: 1px solid red;
 }
 </style>

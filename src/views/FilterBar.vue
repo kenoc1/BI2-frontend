@@ -6,29 +6,31 @@
         <div class="column rows">
           <p class="is-size-5 mb-2">Price</p>
           <div class="row">
-            <a @click="setPriceSort('HighToLow')" href="#" id="PriceHighToLow" class="button sort-button">
-              <i class="fa fa-arrow-up mr-1 sort-item"></i>
-              High to low
+            <a @click="setPriceSort('LowToHigh')" href="#" id="PriceLowToHigh" class="button sort-button">
+              <i class="fa fa-sort-amount-asc mr-1 sort-item"></i>
+              Low to high
+
             </a>
           </div>
           <div class="row">
-            <a @click="setPriceSort('LowToHigh')" href="#" id="PriceLowToHigh" class="button sort-button">
-              <i class="fa fa-arrow-down mr-1 sort-item"></i>
-              Low to high
+            <a @click="setPriceSort('HighToLow')" href="#" id="PriceHighToLow" class="button sort-button">
+              <i class="fa fa-sort-amount-desc mr-1 sort-item"></i>
+              High to low
             </a>
           </div>
+
         </div>
         <div class="column rows">
           <p class="is-size-5 mb-2">Name</p>
           <div class="row">
             <a @click="setNameSort('HighToLow')" href="#" class="button sort-button" id="NameHighToLow">
-              <i class="fa fa-arrow-up mr-1"></i>
+              <i class="mr-1 fa fa fa-sort-alpha-asc sort-item"></i>
               A to Z
             </a>
           </div>
           <div class="row">
             <a @click="setNameSort('LowToHigh')" href="#" class="button sort-button" id="NameLowToHigh">
-              <i class="fa fa-arrow-down mr-1"></i>
+              <i class="fa fa-sort-alpha-desc mr-1 sort-item"></i>
               Z to A
             </a>
           </div>
@@ -75,7 +77,7 @@
         </div>
       </div>
       <div class="column rows">
-        <p class="is-size-5 mb-3 mt-5">Price</p>
+        <p class="is-size-5 mb-3 mt-6">Price</p>
         <div class="row">
           <RangeSlider @PriceFilter="forwardEvent"></RangeSlider>
         </div>
