@@ -144,7 +144,7 @@ export default {
       password: '',
       password2: '',
       email: '',
-      salutation: '',
+      salutation: 'Herr', // muss angepasst werden!!!
       birth_date: '',
       firstname: '',
       lastname: '',
@@ -224,18 +224,22 @@ export default {
 
 
         const formData = {
-          salutation: this.salutation,
-          firstname: this.firstname,
-          lastname: this.lastname,
-          email: this.email,
-          birth_date: this.birth_date,
-          username: this.username,
-          password: this.password,
-          address: this.address
+          "login_data": {
+            username: this.username,
+            password: this.password
+          },
+          "customer": {
+            salutation: this.salutation,
+            firstname: this.firstname,
+            lastname: this.lastname,
+            email: this.email,
+            birth_date: this.birth_date
+          },
+          "address": this.address
         }
 
         axios
-            .post("/api/v1/users/", formData)
+            .post("/api/v1/user/register/", formData)
             .then(response => {
               toast({
                 message: 'Account created, please log in!',
