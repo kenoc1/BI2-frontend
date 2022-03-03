@@ -50,6 +50,7 @@ export default {
   watch: {
     $route(to, from) {
       this.getCategory()
+      this.getfavoriteProduct()
     }
   },
   methods: {
