@@ -123,7 +123,7 @@ export default {
 
       const item = {
         product: this.product,
-        quantity: this.quantity
+        quantity: parseFloat(this.quantity)
       }
       this.$store.commit('addToCart', item)
 
