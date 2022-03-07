@@ -154,7 +154,6 @@ export default {
       street: '',
       house_number: '',
       federal_state: '',
-      address: [],
       errors: []
     }
   },
@@ -210,10 +209,10 @@ export default {
         this.errors.push('The House Number is missing')
       }
 
-
+      console.log("test")
       if (!this.errors.length) {
 
-        this.address = {
+        const address = {
           country: this.country,
           postcode: this.postcode,
           place: this.place,
@@ -221,9 +220,7 @@ export default {
           house_number: this.house_number,
           federal_state: "",
         }
-
-
-        const formData = {
+        const customer = {
           salutation: this.salutation,
           firstname: this.firstname,
           lastname: this.lastname,
@@ -231,7 +228,10 @@ export default {
           birth_date: this.birth_date,
           username: this.username,
           password: this.password,
-          address: this.address
+        }
+        const formData = {
+          customer: customer,
+          address: address
         }
 
         axios
