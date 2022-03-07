@@ -144,7 +144,7 @@ export default {
       password: '',
       password2: '',
       email: '',
-      salutation: '',
+      salutation: 'Herr', // muss angepasst werden!!!
       birth_date: '',
       firstname: '',
       lastname: '',
@@ -154,6 +154,7 @@ export default {
       street: '',
       house_number: '',
       federal_state: '',
+      address: [],
       errors: []
     }
   },
@@ -209,10 +210,10 @@ export default {
         this.errors.push('The House Number is missing')
       }
 
-      console.log("test")
+
       if (!this.errors.length) {
 
-        const address = {
+        this.address = {
           country: this.country,
           postcode: this.postcode,
           place: this.place,
@@ -220,22 +221,25 @@ export default {
           house_number: this.house_number,
           federal_state: "",
         }
-        const customer = {
-          salutation: this.salutation,
-          firstname: this.firstname,
-          lastname: this.lastname,
-          email: this.email,
-          birth_date: this.birth_date,
-          username: this.username,
-          password: this.password,
-        }
+
+
         const formData = {
-          customer: customer,
-          address: address
+          "login_data": {
+            username: this.username,
+            password: this.password
+          },
+          "customer": {
+            salutation: this.salutation,
+            firstname: this.firstname,
+            lastname: this.lastname,
+            email: this.email,
+            birth_date: this.birth_date
+          },
+          "address": this.address
         }
 
         axios
-            .post("/api/v1/users/", formData)
+            .post("/api/v1/user/register/", formData)
             .then(response => {
               toast({
                 message: 'Account created, please log in!',
