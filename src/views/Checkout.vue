@@ -1,11 +1,11 @@
 <template>
-  <div class="page-checkout">
-    <div class="columns is-multiline">
-      <div class="column is-12">
+  <div class="page-checkout is-center">
+    <div class="columns is-multiline ">
+      <div class="column is-12 is-offset-3">
         <h1 class="title">Checkout</h1>
       </div>
 
-      <div class="column is-12 box">
+      <div class=" column is-6 box is-offset-3">
         <table class="table is-fullwidth">
           <thead>
           <tr>
@@ -37,22 +37,22 @@
           </tfoot>
         </table>
       </div>
+      <div class="column is-12"></div>
 
-      <div class="column is-12 box">
+      <div class="column is-6 box is-offset-3">
         <h2 class="subtitle">Shipping details</h2>
-
+        <p class="ml-2">{{ userinformation.firstname }} {{ userinformation.lastname }} </p>
+        <p class="ml-2">{{ userinformation.street }} {{ userinformation.house_number }} </p>
+        <p class="ml-2">{{ userinformation.postcode }} {{ userinformation.place }} </p>
+        <p class="ml-2">{{ userinformation.country }} </p>
       </div>
 
+      <div class="column is-12"></div>
 
-      <div class="column is-12 box">
+      <div class="column is-6 box is-offset-3">
         <h2 class="subtitle">Choose Payment Provider</h2>
-
-        <p class="has-text-grey mb-4">* All fields are required</p>
-
         <div class="columns is-multiline">
           <div class="column is-6">
-
-
             <div class="field rows">
               <label>Payment Provider*</label>
               <div class="select row is-full">
@@ -70,20 +70,18 @@
                 </select>
               </div>
             </div>
-
           </div>
         </div>
-
-        <div class="notification is-danger mt-4" v-if="errors.length">
-          <p v-for="error in errors" v-bind:key="error">{{ error }}</p>
-        </div>
-
-        <hr>
-
-        <button class="button is-dark" @click="submitForm">Pay</button>
-
-
       </div>
+      <div class="column is-12"></div>
+
+      <div class="notification is-danger mt-4 column is-6 is-offset-3" v-if="errors.length">
+        <p v-for="error in errors" v-bind:key="error">{{ error }}</p>
+      </div>
+      <div class="column is-12"></div>
+
+      <button class="column is-2 is-offset-5 p-0 button is-dark custombutton" @click="submitForm">Pay</button>
+
     </div>
   </div>
 </template>
@@ -98,7 +96,17 @@ export default {
       cart: {
         items: []
       },
-      user: '',
+      userinformation: {
+
+        "firstname": "Sven",
+        "lastname": "Meiners",
+        "country": "Deutschland",
+        "postcode": "26121",
+        "place": "Oldenburg",
+        "street": "Teststraße",
+        "house_number": "3",
+
+      },
       errors: [],
       paymentservice: '',
     }
@@ -118,6 +126,7 @@ export default {
       await axios
           .get('/api/user/information')
           .then(response => {
+            this.user = response
             console.log(response.data)
           })
 
@@ -201,6 +210,11 @@ export default {
   display: flex;
   flex-direction: row;
   width: 230px;
+}
+
+.custombutton {
+  min-width: 80px;
+  justify-content: center;
 }
 
 
