@@ -4,25 +4,19 @@
       General
     </p>
     <ul class="menu-list">
-      <li><a class="is-active">Dashboard</a></li>
-      <li><a>Regeln</a></li>
-    </ul>
-    <p class="menu-label">
-      Kennzahlen
-    </p>
-    <ul class="menu-list">
-      <li><a>Verkäufe</a></li>
-      <li><a>Produkte</a></li>
-      <!--          <li>-->
-      <!--            <a class="is-active">Manage Your Team</a>-->
-      <!--            <ul>-->
-      <!--              <li><a>Members</a></li>-->
-      <!--              <li><a>Plugins</a></li>-->
-      <!--              <li><a>Add a member</a></li>-->
-      <!--            </ul>-->
-      <!--          </li>-->
+      <li v-if="highlight === 'first'"><a  href="/dashboard" class="is-active">Dashboard</a></li>
+      <li v-else><a  href="/dashboard">Dashboard</a></li>
 
+      <li v-if="highlight === 'second'"><a class="is-active" href="/rules">Regeln</a></li>
+      <li v-else><a href="/rules">Regeln</a></li>
     </ul>
+    <!--    <p class="menu-label">-->
+    <!--      Kennzahlen-->
+    <!--    </p>-->
+    <!--    <ul class="menu-list">-->
+    <!--      <li><a>Verkäufe</a></li>-->
+    <!--      <li><a>Produkte</a></li>-->
+    <!--    </ul>-->
     <p class="menu-label">
       Administration
     </p>
@@ -35,10 +29,10 @@
 
 <script>
 export default {
-  name: "AdminNav"
+  name: "AdminNav",
+  props: {
+    highlight: String
+  }
 }
 </script>
 
-<style scoped>
-
-</style>

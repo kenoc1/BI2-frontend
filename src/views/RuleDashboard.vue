@@ -1,28 +1,28 @@
 <template>
   <div class="columns is-fullheight">
     <div class="column is-2 is-sidebar-menu is-hidden-mobile">
-      <AdminNav highlight="first"></AdminNav>
+      <AdminNav highlight="second"></AdminNav>
     </div>
     <div class="column is-main-content">
 
       <main class="main" id="main">
-        <!--        <%- include('/breadcrumb', {menuTitle: 'Dashboard', menuIcon: 'fa-tachometer'}) %>-->
-        <BoxRow></BoxRow>
+<!--        &lt;!&ndash;        <%- include('/breadcrumb', {menuTitle: 'Dashboard', menuIcon: 'fa-tachometer'}) %>&ndash;&gt;-->
+<!--        <BoxRow></BoxRow>-->
 
-        <div class="columns is-multiline">
-          <ChartCard chart-title="Revenue - 7 Days">
-            <BarChartTwo/>
-          </ChartCard>
-          <ChartCard chart-title="Orders - 7 Days">
-            <BarChartOne/>
-          </ChartCard>
-          <ChartCard chart-title="Revenue - 100 Days">
-            <LineChartOne/>
-          </ChartCard>
-          <ChartCard chart-title="Orders - 100 Days">
-            <LineChartTwo/>
-          </ChartCard>
-        </div>
+<!--        <div class="columns is-multiline">-->
+<!--          <ChartCard chart-title="Revenue - 7 Days">-->
+<!--            <BarChartTwo/>-->
+<!--          </ChartCard>-->
+<!--          <ChartCard chart-title="Orders - 7 Days">-->
+<!--            <BarChartOne/>-->
+<!--          </ChartCard>-->
+<!--          <ChartCard chart-title="Revenue - 100 Days">-->
+<!--            <LineChartOne/>-->
+<!--          </ChartCard>-->
+<!--          <ChartCard chart-title="Orders - 100 Days">-->
+<!--            <LineChartTwo/>-->
+<!--          </ChartCard>-->
+<!--        </div>-->
 
         <!--        <% include /horizontalAds %>-->
         <!--        <% include /copyright %>-->
