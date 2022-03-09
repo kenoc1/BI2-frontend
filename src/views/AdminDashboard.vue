@@ -10,17 +10,17 @@
         <BoxRow></BoxRow>
 
         <div class="columns is-multiline">
-          <ChartCard chart-title="Chart1">
-            <LineChart/>
-          </ChartCard>
-          <ChartCard chart-title="Orders">
-            <BarChartOne/>
-          </ChartCard>
-          <ChartCard chart-title="Chart3">
+          <ChartCard chart-title="Revenue - 7 Days">
             <BarChartTwo/>
           </ChartCard>
-          <ChartCard chart-title="Chart4">
-            <BarChartThree/>
+          <ChartCard chart-title="Orders - 7 Days">
+            <BarChartOne/>
+          </ChartCard>
+          <ChartCard chart-title="Revenue - 100 Days">
+            <LineChartOne/>
+          </ChartCard>
+          <ChartCard chart-title="Orders - 100 Days">
+            <LineChartTwo/>
           </ChartCard>
         </div>
 
@@ -38,10 +38,10 @@ import VueApexCharts from "vue3-apexcharts";
 import AdminNav from "@/components/AdminNav";
 import AdminBox from "@/views/dashboardelems/bares/AdminBox";
 import BoxRow from "@/views/dashboardelems/BoxRow";
-import LineChart from "@/views/dashboardelems/LineChart";
+import LineChartOne from "@/views/dashboardelems/LineChartOne";
+import LineChartTwo from "@/views/dashboardelems/LineChartTwo";
 import BarChartOne from "@/views/dashboardelems/BarChartOne";
 import BarChartTwo from "@/views/dashboardelems/BarChartTwo";
-import BarChartThree from "@/views/dashboardelems/BarChartThree";
 import ChartCard from "@/views/dashboardelems/bares/ChartCard";
 // import fetchApiMixin from "@/mixins/fetchApiMixin";
 
@@ -50,15 +50,15 @@ export default {
   // mixins: [fetchApiMixin],
   components: {
     ChartCard,
-    BarChartThree,
     BarChartTwo,
     BarChartOne,
-    LineChart,
+    LineChartOne,
     AdminNav,
     ApexCharts,
     apexchart: VueApexCharts,
     AdminBox,
-    BoxRow
+    BoxRow,
+    LineChartTwo
   },
   data: function () {
     return {}

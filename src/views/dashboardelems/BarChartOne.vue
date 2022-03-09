@@ -20,30 +20,29 @@ export default {
   },
   data: function () {
     return {
-      chartOptions: {
-        chart: {
-          id: "vuechart-example",
-        },
-        xaxis: {
-          categories: [],
-        },
-      },
-      series: [
-        {
-          name: "Orders",
-          data: [],
-        },
-      ],
+      chartOptions: {},
+      series: [],
     }
   },
   methods: {
     async getData() {
       axios
-          .get("/api/v1/history-orders/")
+          .get("/api/v1/history-orders-7/")
           .then(response => {
-            this.chartOptions.xaxis.categories = response.data['orders'][0]
-            this.series[0].data = response.data['orders'][1]
-            console.log(response.data['orders'][0])
+            this.chartOptions = {
+              chart: {
+                id: "vuechart-example",
+              },
+              xaxis: {
+                categories: response.data['orders'][0],
+              },
+            }
+            this.series = [
+              {
+                name: "Orders",
+                data: response.data['orders'][1],
+              },
+            ]
           })
           .catch(error => {
             console.log(error)

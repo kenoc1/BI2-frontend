@@ -10,6 +10,7 @@
 <script>
 import ApexCharts from 'apexcharts'
 import VueApexCharts from "vue3-apexcharts";
+import axios from "axios";
 
 export default {
   name: "BarChartTwo",
@@ -19,21 +20,37 @@ export default {
   },
   data: function () {
     return {
-      chartOptions: {
-        chart: {
-          id: "vuechart-example",
-        },
-        xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
-        },
-      },
-      series: [
-        {
-          name: "series-1",
-          data: [30, 40, 35, 50, 49, 60, 70, 91],
-        },
-      ],
+      chartOptions: {},
+      series: [],
     }
+  },
+  methods: {
+    async getData() {
+      axios
+          .get("/api/v1/history-revenue-7/")
+          .then(response => {
+            this.chartOptions = {
+              chart: {
+                id: "vuechart-example",
+              },
+              xaxis: {
+                categories: response.data['revenue'][0],
+              },
+            }
+            this.series = [
+              {
+                name: "Revenue",
+                data: response.data['revenue'][1],
+              },
+            ]
+          })
+          .catch(error => {
+            console.log(error)
+          })
+    },
+  },
+  async mounted() {
+    await this.getData()
   }
 }
 </script>
