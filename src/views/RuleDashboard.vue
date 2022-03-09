@@ -6,6 +6,7 @@
     <div class="column is-main-content">
 
       <main class="main" id="main">
+        <rule-table></rule-table>
 <!--        &lt;!&ndash;        <%- include('/breadcrumb', {menuTitle: 'Dashboard', menuIcon: 'fa-tachometer'}) %>&ndash;&gt;-->
 <!--        <BoxRow></BoxRow>-->
 
@@ -43,12 +44,14 @@ import LineChartTwo from "@/views/dashboardelems/LineChartTwo";
 import BarChartOne from "@/views/dashboardelems/BarChartOne";
 import BarChartTwo from "@/views/dashboardelems/BarChartTwo";
 import ChartCard from "@/views/dashboardelems/bares/ChartCard";
+import RuleTable from "@/views/dashboardelems/RuleTable";
 // import fetchApiMixin from "@/mixins/fetchApiMixin";
 
 export default {
   name: 'AdminPanel',
   // mixins: [fetchApiMixin],
   components: {
+    RuleTable,
     ChartCard,
     BarChartTwo,
     BarChartOne,
