@@ -100,7 +100,7 @@ import axios from 'axios'
 
 
 export default {
-  name: "CategoryList",
+  name: "Navbar",
 
   data() {
     return {

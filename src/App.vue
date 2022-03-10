@@ -1,7 +1,7 @@
 <template>
   <div id="wrapper">
-    <category-list>
-    </category-list>
+    <navbar>
+    </navbar>
     <div class="is-loading-bar has-text-centered" v-bind:class="{'is-loading': $store.state.isLoading }">
       <div class="lds-dual-ring"></div>
     </div>
@@ -18,10 +18,10 @@
 
 <script>
 import axios from 'axios'
-import CategoryList from "./components/CategoryList";
+import Navbar from "./components/Navbar";
 
 export default {
-  components: {CategoryList},
+  components: {Navbar},
   data() {
     return {
       showMobileMenu: false,

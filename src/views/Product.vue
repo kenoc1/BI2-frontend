@@ -95,17 +95,12 @@ export default {
     async getProduct() {
       this.$store.commit('setIsLoading', true)
       const product_slug = this.$route.params.product_slug
-      console.log(product_slug)
       await axios
           .get(`/api/v1/product/${product_slug}`)
           //.get('/api/v1/one/')
           .then(response => {
-
-            console.log(response.data)
             this.product = response.data['product'];
             this.associated_products = response.data['associations']
-
-
             document.title = this.product.name + ' | IBSUPERMARKT'
           })
           .catch(error => {
