@@ -27,6 +27,18 @@
     <Slide sliderName="assosiations"
            v-bind:products="latestProducts"/>
 
+
+    <div class="">
+      <div class="column is-12">
+        <h2 class="is-size-2 has-text-centered">Best Products from our shop!</h2>
+      </div>
+
+      <Slide sliderName="favoriteProduct"
+             v-bind:products="favoriteProduct"/>
+
+    </div>
+
+
   </div>
 
 
@@ -43,6 +55,8 @@ export default {
   data() {
     return {
       latestProducts: [],
+      favoriteProduct: [],
+
     }
   },
   components: {
@@ -52,6 +66,7 @@ export default {
 
   mounted() {
     this.getLatestProducts()
+    this.getfavoriteProduct()
 
     document.title = 'Home | IBSUPERMARKT'
 
@@ -71,7 +86,22 @@ export default {
           })
 
       this.$store.commit('setIsLoading', false)
-    }
-  },
+    },
+    async getfavoriteProduct() {
+      this.$store.commit('setIsLoading', true)
+
+      await axios
+          .get('/api/v1/favoritProduct/')
+          .then(response => {
+            this.favoriteProduct = response.data
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      this.$store.commit('setIsLoading', false)
+    },
+
+
+  }
 }
 </script>
