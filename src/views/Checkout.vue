@@ -97,16 +97,17 @@ export default {
         items: []
       },
       userinformation: {
-
-        "firstname": "Sven",
-        "lastname": "Meiners",
-        "country": "Deutschland",
-        "postcode": "26121",
-        "place": "Oldenburg",
-        "street": "Teststraße",
-        "house_number": "3",
+        "firstname": "",
+        "lastname": "",
+        "country": "",
+        "postcode": "",
+        "place": "",
+        "street": "",
+        "house_number": "",
 
       },
+      address_data: '',
+      user_data: '',
       errors: [],
       paymentservice: '',
     }
@@ -115,6 +116,7 @@ export default {
     document.title = 'Checkout | IBSUPERMARKT'
 
     this.cart = this.$store.state.cart
+    this.getuserinformation()
 
 
   },
@@ -124,10 +126,19 @@ export default {
     },
     async getuserinformation() {
       await axios
-          .get('/api/user/information')
+          .get('/api/v1/user/information')
           .then(response => {
-            this.user = response
-            console.log(response.data)
+            this.address_data = response.data['address_data']
+            this.user_data = response.data['user_data']
+
+            this.userinformation.firstname = this.user_data.firstname
+            this.userinformation.lastname = this.user_data.lastname
+            this.userinformation.street = this.address_data.street
+            this.userinformation.house_number = this.address_data.house_number
+            this.userinformation.postcode = this.address_data.postcode
+            this.userinformation.place = this.address_data.place
+            this.userinformation.country = this.address_data.country
+
           })
 
 
@@ -172,6 +183,7 @@ export default {
           .post('/api/v1/checkout/', data)
           .then(response => {
             this.$store.commit('clearCart')
+            console.log(this.$store.state.cart)
             this.$router.push('/cart/success')
           })
           .catch(error => {
@@ -179,6 +191,8 @@ export default {
 
             console.log(error)
           })
+
+
 
       this.$store.commit('setIsLoading', false)
     }
