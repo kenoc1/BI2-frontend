@@ -7,10 +7,26 @@ export default createStore({
     },
     isAuthenticated: false,
     token: '',
-    isLoading: false
+    isLoading: false,
+    filterParams: [],
+    priceSortParam: '',
+    nameSortParam: '',
+    priceRange: []
   },
   mutations: {
     initializeStore(state) {
+      if(localStorage.getItem('filterParams')){
+        state.filterParams  = localStorage.getItem('filterParams')
+      }
+      if(localStorage.getItem('priceSortParam')){
+        state.priceSortParam  = localStorage.getItem('priceSortParam')
+      }
+      if(localStorage.getItem('ratingSortParam')){
+        state.nameSortParam  = localStorage.getItem('nameSortParam')
+      }
+      if(localStorage.getItem('priceRange')){
+        state.priceRange = localStorage.getItem('priceRange')
+      }
       if (localStorage.getItem('cart')) {
         state.cart = JSON.parse(localStorage.getItem('cart'))
       } else {
@@ -56,6 +72,30 @@ export default createStore({
 
       localStorage.setItem('cart', JSON.stringify(state.cart))
     },
+    saveFilter(state, filterParams){
+      state.filterParams = filterParams
+      localStorage.setItem('filterParams',filterParams)
+    },
+    savePriceSort(state, sortParam){
+      state.priceSortParam = sortParam
+      localStorage.setItem('priceSortParam',sortParam)
+    },
+    saveNameSort(state, sortParam){
+      state.nameSortParam = sortParam
+      localStorage.setItem('nameSortParam',sortParam)
+    },
+    savePriceRange(state, range){
+      state.priceRange = range
+      localStorage.setItem('priceRange', range)
+    },
+    removePriceSort(state){
+      state.priceSortParam = ''
+      localStorage.removeItem('priceSortParam')
+    },
+    removeNameSort(state){
+      state.nameSortParam = ''
+      localStorage.removeItem('nameSortParam')
+    }
   },
   actions: {
   },
