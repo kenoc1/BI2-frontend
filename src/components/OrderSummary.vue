@@ -54,7 +54,7 @@ export default {
     getTotalPrice() {
       let price = 0;
       for (let index in this.order.products) {
-        price = price + this.order.products[index].price
+        price = price + this.order.products[index].price * this.order.products[index].quantity
       }
       return price;
     },
