@@ -1,6 +1,6 @@
 <template>
     <div class="box mb-4">
-        <h3 class="is-size-4 mb-6">Order #{{ order.id }}</h3>
+        <h3 class="is-size-4 mb-6">Order #{{ order['order_id'] }}</h3>
 
         <h4 class="is-size-5">Products</h4>
 
@@ -16,12 +16,12 @@
 
             <tbody>
                 <tr
-                    v-for="item in order.items"
-                    v-bind:key="item.product.id"
+                    v-for="item in order['products']"
+                    v-bind:key="item['product_id']"
                 >
-                    <td>{{ item.product.name }}</td>
-                    <td>${{ item.product.price }}</td>
-                    <td>{{ item.quantity }}</td>
+                    <td>{{ item['name'] }}</td>
+                    <td>${{ item['quantity'] }}</td>
+                    <td>{{ item['price'] }}</td>
                     <td>${{ getItemTotal(item).toFixed(2) }}</td>
                 </tr>
             </tbody>
@@ -37,11 +37,11 @@ export default {
     },
     methods: {
         getItemTotal(item) {
-            return item.quantity * item.product.price
+            return item['price'] * item['quantity']
         },
         orderTotalLength(order) {
-            return order.items.reduce((acc, curVal) => {
-                return acc += curVal.quantity
+            return order['products'].reduce((acc, curVal) => {
+                return acc += curVal['quantity']
             }, 0)
         },
     }

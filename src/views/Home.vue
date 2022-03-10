@@ -23,12 +23,21 @@
 
     <hr>
     <div v-if="recommendedProducts.length !== 0">
-    <h2 class="is-size-2 has-text-centered">These products may interest you</h2>
+      <h2 class="is-size-2 has-text-centered">These products may interest you</h2>
 
-    <Slide sliderName="assosiations"
-           v-bind:products="recommendedProducts"/>
+      <Slide sliderName="assosiations"
+             v-bind:products="recommendedProducts"/>
+    </div>
+    <div class="">
+      <div class="column is-12">
+        <h2 class="is-size-2 has-text-centered">Best Products from our shop!</h2>
+      </div>
+
+      <Slide sliderName="favoriteProduct"
+             v-bind:products="favoriteProduct"/>
+
+    </div>
   </div>
-</div>
 
 </template>
 
@@ -43,7 +52,8 @@ export default {
   data() {
     return {
       latestProducts: [],
-      recommendedProducts: []
+      recommendedProducts: [],
+      favoriteProduct: []
     }
   },
   components: {
@@ -53,6 +63,7 @@ export default {
 
   mounted() {
     this.getLatestProducts()
+    this.getfavoriteProduct()
     this.getRecommendedProducts()
 
     document.title = 'Home | IBSUPERMARKT'
@@ -88,6 +99,19 @@ export default {
             this.recommendedProducts = []
           })
 
+      this.$store.commit('setIsLoading', false)
+    },
+    async getfavoriteProduct() {
+      this.$store.commit('setIsLoading', true)
+
+      await axios
+          .get('/api/v1/favoritProduct/')
+          .then(response => {
+            this.favoriteProduct = response.data
+          })
+          .catch(error => {
+            console.log(error)
+          })
       this.$store.commit('setIsLoading', false)
     }
   },

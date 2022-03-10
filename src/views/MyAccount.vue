@@ -16,7 +16,7 @@
 
                 <OrderSummary
                     v-for="order in orders"
-                    v-bind:key="order.id"
+                    v-bind:key="order['order_id']"
                     v-bind:order="order" />
             </div>
         </div>
@@ -61,6 +61,7 @@ export default {
             await axios
                 .get('/api/v1/orders/')
                 .then(response => {
+                    console.log(response.data)
                     this.orders = response.data
                 })
                 .catch(error => {

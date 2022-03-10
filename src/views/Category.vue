@@ -12,10 +12,10 @@
     </div>
     <Paginator v-bind:page="page_json" @PageChange="getCategory"></Paginator>
     <hr>
-    <h2 class="is-size-2 has-text-centered">Diese Produkte könnten Sie interessieren</h2>
+    <h2 class="is-size-2 has-text-centered">Best Products from our shop in this category!</h2>
 
-    <Slide sliderName="assosiations"
-        v-bind:products="product"/>
+    <Slide sliderName="favoriteProduct"
+           v-bind:products="favoriteProduct"/>
   </div>
 </template>
 
@@ -37,25 +37,32 @@ export default {
     return {
       category: [],
       product: [],
-      page_json: []
+      page_json: [],
+      favoriteProduct: [],
     }
   },
   mounted() {
     this.getCategory()
+    this.getfavoriteProduct()
+
+
   },
   watch: {
     $route(to, from) {
-      if (to.name === 'Category') {
-        this.getCategory()
-      }
+      this.getCategory()
+      this.getfavoriteProduct()
     }
   },
   methods: {
     async getCategory(event) {
-      const categorySlug = this.$route.params.category_slug
-
+      const familySlug = this.$route.params.family_slug
+      let divisionSlug = '';
+      if (this.$route.params.division_slug) {
+        divisionSlug = '/' + this.$route.params.division_slug
+      }
+      //console.log(familySlug)
       this.$store.commit('setIsLoading', true)
-      var url = '/api/v1/products/' + categorySlug
+      var url = '/api/v1/products/' + familySlug + divisionSlug
       if (undefined !== event) {
         url = url + ('?pg=' + event)
       }
@@ -87,7 +94,22 @@ export default {
           })
 
       this.$store.commit('setIsLoading', false)
-    }
+    },
+    async getfavoriteProduct() {
+      const familySlug = this.$route.params.family_slug
+      this.$store.commit('setIsLoading', true)
+
+      await axios
+          .get('/api/v1/favoritProduct/' + familySlug)
+          .then(response => {
+            this.favoriteProduct = response.data
+            console.log(response.data)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      this.$store.commit('setIsLoading', false)
+    },
   }
 }
 </script>
