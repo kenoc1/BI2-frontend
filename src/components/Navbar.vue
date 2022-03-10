@@ -129,14 +129,20 @@ export default {
   },
   mounted() {
     this.cart = this.$store.state.cart
+    console.log(this.cart)
     this.getDivision()
+  },
+  watch: {
+    '$store.state.cart': function () {
+      console.log(this.$store.state.cart)
+    }
   },
   computed: {
     cartTotalLength() {
       let totalLength = 0
-
-      for (let i = 0; i < this.cart.items.length; i++) {
-        totalLength += this.cart.items[i].quantity
+      let cartitems = this.$store.state.cart.items;
+      for (let i = 0; i < cartitems.length; i++) {
+        totalLength += cartitems[i].quantity
       }
       return totalLength
     }

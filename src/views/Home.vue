@@ -59,7 +59,7 @@ export default {
     this.getfavoriteProduct()
     this.getRecommendedProducts()
 
-    document.title = 'Home | IBSUPERMARKT'
+    document.title = 'Home | Studolf'
 
 
   },
