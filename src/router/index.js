@@ -123,7 +123,7 @@ const routes = [
         }
     },
     {
-        path: '/:category_slug/:product_slug',
+        path: '/product/:product_slug',
         name: 'Product',
         component: Product,
         meta: {
@@ -131,13 +131,22 @@ const routes = [
         }
     },
     {
-        path: '/:category_slug',
+        path: '/:family_slug',
         name: 'Category',
         component: Category,
         meta: {
             requiresAuth: true,
         }
+    },
+    {
+        path: '/:family_slug/:division_slug',
+        name: 'Division',
+        component: Category,
+        meta: {
+            requiresAuth: true,
+        }
     }
+
 ]
 
 const router = createRouter({

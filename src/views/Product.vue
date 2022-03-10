@@ -3,8 +3,8 @@
 
   <div class="page-product">
     <div class="columns is-multiline">
-      <div class="column is-5">
-        <figure class="image mb-6 productcontainer">
+      <div class="is-5">
+        <figure class="image productcontainer">
           <span v-if="product.discount > 0"
                 class="discount is-top-0 is-right-0 ml-4 mt-4 tag has-text-weight-bold is-size-5"
                 :class="product.discount > 0.4 ? 'is-danger' : 'is-warning'">{{ discountInPercent }}</span>
@@ -12,7 +12,7 @@
         </figure>
       </div>
 
-      <div class="column is-5">
+      <div class="is-5">
 
         <h5 class="title mb-1">{{ product.name }}</h5>
         <p class="has-text-grey mb-3 is-size-7">SKU: {{ product.sku }}</p>
@@ -83,31 +83,24 @@ export default {
     }
   },
   watch: {
-    '$route' (to, from) {
+    '$route'(to, from) {
       this.getProduct()
-      window.scrollTo(0,0)
+      window.scrollTo(0, 0)
     }
   },
   beforeCreate() {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
   },
   methods: {
     async getProduct() {
       this.$store.commit('setIsLoading', true)
-
-      const category_slug = this.$route.params.category_slug
       const product_slug = this.$route.params.product_slug
-
       await axios
-          .get(`/api/v1/${category_slug}/${product_slug}`)
+          .get(`/api/v1/product/${product_slug}`)
           //.get('/api/v1/one/')
           .then(response => {
-
-            console.log(response.data)
             this.product = response.data['product'];
             this.associated_products = response.data['associations']
-
-
             document.title = this.product.name + ' | IBSUPERMARKT'
           })
           .catch(error => {
@@ -173,8 +166,7 @@ export default {
 
 .productcontainer {
   position: relative;
-  height: 800px;
-  width: 550px;
+  margin-right: 20px;
 }
 
 .productcontainer2 {
@@ -200,4 +192,10 @@ export default {
   font-size: large;
 }
 
+img {
+  display: block;
+  height: auto;
+  width: 100%;
+  max-width: 404px;
+}
 </style>
