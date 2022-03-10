@@ -23,7 +23,7 @@
     </div>
     <div class="">
       <div class="column is-12">
-        <h2 class="is-size-2 has-text-centered">Best Products from our shop!</h2>
+        <h2 class="is-size-2 has-text-centered">Top-Seller from our shop!</h2>
       </div>
 
       <Slide sliderName="favoriteProduct"
@@ -59,7 +59,7 @@ export default {
     this.getfavoriteProduct()
     this.getRecommendedProducts()
 
-    document.title = 'Home | IBSUPERMARKT'
+    document.title = 'Home | Studolf'
 
 
   },

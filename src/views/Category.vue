@@ -13,10 +13,11 @@
     </div>
     <Paginator v-bind:page="page_json" @PageChange="getCategory"></Paginator>
     <hr>
-    <h2 class="is-size-2 has-text-centered">Best Products from our shop in this category!</h2>
-
+    <h2 class="is-size-2 has-text-centered">You might like this products too</h2>
     <Slide sliderName="assosiations"
            v-bind:products="product"/>
+
+    <h2 class="is-size-2 has-text-centered">Top-Seller from our shop in this category!</h2>
     <Slide sliderName="favoriteProduct"
            v-bind:products="favoriteProduct"/>
   </div>
