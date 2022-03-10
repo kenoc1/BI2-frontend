@@ -1,14 +1,7 @@
 <template>
   <div class="home">
     <section class="hero is-medium is-dark mb-6">
-      <div class="hero-body has-text-centered">
-        <p class="title mb-6">
-          Welcome to IBSUPERMARKT!
-        </p>
-        <p class="subtitle">
-          The best store online
-        </p>
-      </div>
+      <h2 class="is-size-2 has-text-centered">Welcome to Studolf!</h2>
     </section>
 
     <div class="">
