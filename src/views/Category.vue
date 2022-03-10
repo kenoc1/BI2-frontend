@@ -28,15 +28,12 @@ import {toast} from 'bulma-toast'
 import Slide from '@/components/Slide'
 import ProductBox from '@/components/ProductBox'
 import Paginator from "../components/Paginator"
-import {CCollapse} from '@coreui/vue'
-import FilterHeader from "../components/FilterHeader";
 import FilterBar from "./FilterBar";
 
 export default {
   name: 'Category',
   components: {
     FilterBar,
-    FilterHeader,
     Paginator,
     ProductBox,
     Slide
@@ -107,9 +104,6 @@ export default {
       //console.log(familySlug)
       this.$store.commit('setIsLoading', true)
       var url = '/api/v1/products/' + familySlug + divisionSlug + params
-      if (undefined !== event) {
-        url = url + ('?pg=' + event)
-      }
 
       axios
           .get(url)
