@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     discountInPercent() {
-      return '-' + this.product.discount * 100 + '%'
+      return '-' + (this.product.discount * 100).toFixed(0) + '%'
     },
     actualPrice() {
       return ((this.product.get_price - (this.product.discount * this.product.get_price)).toFixed(2))
