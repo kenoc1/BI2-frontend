@@ -10,13 +10,13 @@
         <BoxRow></BoxRow>
 
         <div class="columns is-multiline">
-          <ChartCard chart-title="Revenue - 7 Days">
+          <ChartCard chart-title="Revenue in € - 7 Days">
             <BarChartTwo/>
           </ChartCard>
           <ChartCard chart-title="Orders - 7 Days">
             <BarChartOne/>
           </ChartCard>
-          <ChartCard chart-title="Revenue - 100 Days">
+          <ChartCard chart-title="Revenue in € - 100 Days">
             <LineChartOne/>
           </ChartCard>
           <ChartCard chart-title="Orders - 100 Days">
