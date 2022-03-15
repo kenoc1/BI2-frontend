@@ -49,11 +49,10 @@ export default {
       const hashedPassword = this.hashFunction(this.password);
       if (hashedPassword === -1512564111) {
         storageHelper.setItem('user-password', hashedPassword)
-        router.push('/home')
+        router.push('/')
       } else {
         window.alert("Das eingegebene Passwort ist falsch!")
       }
-
     },
 
     hashFunction(string) {
